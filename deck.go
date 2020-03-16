@@ -2,15 +2,25 @@ package main
 
 import "fmt"
 
-//creating new type of 'deck' which is a slice of strings
 type deck []string
 
-//creating new function that belongs to deck type and loops through deck of cards and prints out all values
-//below is a receiver function
-//variable d represents the instance of the deck variable we're working with
+func newDeck() deck {
+	cards := deck{}
+
+	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
+	cardValues := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+
+	for _, suit := range cardSuits {
+		for _, value := range cardValues {
+			cards = append(cards, value+" of "+suit)
+		}
+	}
+
+	return cards
+}
 
 func (d deck) print() {
-	for i, card := range d {
-		fmt.Println(i, card)
+	for _, card := range d {
+		fmt.Println(card)
 	}
 }
